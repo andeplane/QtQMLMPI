@@ -1,4 +1,5 @@
 #include "mpicontroller.h"
+#include <QDebug>
 
 MPIController::MPIController(QObject *parent) : QObject(parent)
 {
@@ -15,6 +16,8 @@ void MPIController::initialize(int worldRank, int worldSize)
         MPI_Comm_split(MPI_COMM_WORLD, MPI_UNDEFINED, worldRank, &slave_comm);
     } else {
         MPI_Comm_split(MPI_COMM_WORLD, 1, worldRank, &slave_comm);
+        MPI_Comm_rank(slave_comm, &m_slaveRank);
+        MPI_Comm_size(slave_comm, &m_slaveSize);
     }
 
     m_isInitialized = true;

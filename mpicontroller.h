@@ -12,6 +12,8 @@ class MPIController : public QObject
 private:
     int m_worldRank = -1;
     int m_worldSize = -1;
+    int m_slaveRank = -1;
+    int m_slaveSize = -1;
     bool m_isInitialized = false;
     bool m_isHost = false;
     MPI_Comm slave_comm;
